@@ -1,8 +1,20 @@
+#!/bin/bash
+set -x
+source "credentials.sh"
+source "definitions.sh"
 
-az group create --name svathis-ebay --location westeurope
-az storage account create --name svathisebay --location westeurope --resource-group svathis-ebay --sku Standard_LRS
-az functionapp create --name svathis-ebay --os-type Linux --storage-account svathisebay --consumption-plan-location westeurope --resource-group svathis-ebay --runtime python
-func init --source-control --worker-runtime python --language python
-func azure storage fetch-connection-string svathisebay
-func new --name watchlist -l python --template "Http Trigger"
-func azure functionapp publish svathis-ebay --nozip --python
+#Create Resource Group, Storage Account & FunctionApp in Azure
+az group create --name $rgName --location $location
+az storage account create --name $storageName --location $location --resource-group $rgName --sku Standard_LRS
+az functionapp create --name $functionAppName --os-type Linux --storage-account $storageName --consumption-plan-location $location --resource-group $rgName --runtime python
+az functionapp config appsettings set --name $functionAppName --resource-group $rgName --settings FUNCTIONS_EXTENSION_VERSION=~3
+
+#Push eBay credentials to Azure as App settings
+az functionapp config appsettings set --name $functionAppName --resource-group $rgName --settings "EBAY_APPID=$EBAY_APPID"
+az functionapp config appsettings set --name $functionAppName --resource-group $rgName --settings "EBAY_DEVID=$EBAY_DEVID"
+az functionapp config appsettings set --name $functionAppName --resource-group $rgName --settings "EBAY_CERTID=$EBAY_CERTID"
+az functionapp config appsettings set --name $functionAppName --resource-group $rgName --settings "EBAY_TOKEN=$EBAY_TOKEN"
+az functionapp config appsettings set --name $functionAppName --resource-group $rgName --settings "EBAY_SITEID=$EBAY_SITEID"
+
+#Retrieve these credentials locally
+func azure functionapp fetch-app-settings $functionAppName
