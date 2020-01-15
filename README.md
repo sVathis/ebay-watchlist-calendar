@@ -105,11 +105,10 @@ Hosting environment: Production
 Content root path: \ebay-watchlist-calendar
 Now listening on: http://0.0.0.0:7071
 [15/1/2020 9:10:12 πμ] Application started. Press Ctrl+C to shut down.
- INFO: Received WorkerInitRequest, request ID 87d03738-8368-4aa7-ba29-f01464fc15ad
+ INFO: Received WorkerInitRequest, request ID <removed>
 
 Http Functions:
-[15/1/2020 9:10:12 πμ]  INFO: Received FunctionLoadRequest, request ID: 87d03738-8368-4aa7-ba29-f01464fc15ad, function ID: 40630b22-d036-477b-9b84-82303ea0b1e9
-
+[15/1/2020 9:10:12 πμ]  INFO: Received FunctionLoadRequest, request ID: <removed>, function ID: <removed>
         watchlist: [GET,POST] http://localhost:7071/api/watchlist
 
 ```
@@ -148,9 +147,9 @@ Remote build in progress, please wait...
 Deployment successful.
 Remote build succeeded!
 Syncing triggers...
-Functions in ebaywatchlist2:
+Functions in ebaywatchlistfunc:
     watchlist - [httpTrigger]
-        Invoke url: https://ebaywatchlist2.azurewebsites.net/api/watchlist?code=6KE4G4jp68h4asFtkX49FBBp9m43KjJGSwJLcRC9al5NQThP3JW5yg==
+        Invoke url: https://ebaywatchlistfunc.azurewebsites.net/api/watchlist?code=<unique_code>
 ```
 
 After succesfull deployment you can send HTTPS request towards the `Invoke url` above in order to retrieve your eBay Watchlist in iCalendar format. You can use this `Invoke url` to subscribe to this iCalendar in your favorite calendaring platform, e.g. [Google Calendar](https://support.google.com/calendar/answer/37100?co=GENIE.Platform%3DDesktop&hl=en) or [Outlook](https://support.office.com/en-us/article/Import-or-subscribe-to-a-calendar-in-Outlook-on-the-web-503ffaf6-7b86-44fe-8dd6-8099d95f38df).
