@@ -46,10 +46,10 @@ After you generate your keyset, use the User Tokens option next to your App ID t
 You should copy and save your Production enviroment keys locally in the [credentials.sh](credentials.sh) file, for use in this application, as follows:
 
 ```
-EBAY_APPID=<App ID>
-EBAY_DEVID=<Dev ID>
-EBAY_CERTID=<Cert ID>
-EBAY_TOKEN=<User Token>
+EBAYAPPID=<App ID>
+EBAYDEVID=<Dev ID>
+EBAYCERTID=<Cert ID>
+EBAYTOKEN=<User Token>
 ```
 
 These credentials will be privatly uploaded to Azure as [App settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings) by the [bootstrap.sh](bootstrap.sh) script.
@@ -65,7 +65,7 @@ Activate the virtual environment by runing the `activate` script inside the `.ve
 
 Install locally all required modules as follows:
 ```shell
-$ pip install -r requirement.txt
+$ pip install -r requirements.txt
 ```
 
 ## Deploying
@@ -93,8 +93,9 @@ This script will:
  * create an Resource Group where all resources required for this function will belong
  * create a Storage Account, required by the Azure Functions framework
  * create the Azure Function App
- * securely upload to Azure all eBay credentials as [App settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings)
- * will fetch these app settings locally so that can be used for local function execution.
+ * create a Key Vault
+ * securely upload to Key Vault all eBay credentials 
+ * will fetch these credentials as [App settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings) locally so that can be used for local function execution. However, per [this bug](https://github.com/Azure/Azure-Functions/issues/1291) Key Vault secrets can not be referenced locally, for now.
 
 After bootstraping, the Azure Function can be executed locally (always within your Python virtual environment) as follows:
 

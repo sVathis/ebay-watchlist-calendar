@@ -13,11 +13,11 @@ import os
 def main(req: func.HttpRequest) -> func.HttpResponse:
 
     try:
-        api = Trading(appid=os.environ["EBAY_APPID"],
-                      devid=os.environ['EBAY_DEVID'],
-                      certid=os.environ['EBAY_CERTID'],
-                      token=os.environ['EBAY_TOKEN'],
-                      siteid=os.environ['EBAY_SITEID'],
+        api = Trading(appid=os.environ["EBAYAPPID"],
+                      devid=os.environ['EBAYDEVID'],
+                      certid=os.environ['EBAYCERTID'],
+                      token=os.environ['EBAYTOKEN'],
+                      siteid=os.environ['EBAYSITEID'],
                       config_file=None)
 
         response = api.execute('GetMyeBayBuying',  {'DetailLevel': 'ReturnAll'})
