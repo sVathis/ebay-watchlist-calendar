@@ -95,7 +95,7 @@ This script will:
  * create the Azure Function App
  * create a Key Vault
  * securely upload to Key Vault all eBay credentials 
- * will fetch these credentials as [App settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings) locally so that can be used for local function execution. However, per [this bug](https://github.com/Azure/Azure-Functions/issues/1291) Key Vault secrets can not be referenced locally, for now.
+ * will fetch these credentials as [App settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings) locally so that can be used for local function execution. However, per [this bug](https://github.com/Azure/azure-functions-host/issues/3907) Key Vault secrets can not be referenced locally, for now.
 
 After bootstraping, the Azure Function can be executed locally (always within your Python virtual environment) as follows:
 
