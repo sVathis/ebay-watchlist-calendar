@@ -2,4 +2,4 @@
 set -x
 source "definitions.sh"
 
-func azure functionapp publish $functionAppName --nozip --python
+func azure functionapp publish $functionAppName --python 
